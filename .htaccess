@@ -1,0 +1,155 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+#REWRITE RULES
+#---------------------
+
+#RULE BLOCK FAVICON 
+
+<Files favicon\.ico>
+ErrorDocument 404 "The requested file favicon.ico was not found"
+</Files>
+
+#RULE CC ATTRIBUTION  - CC/(PHOTOID) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^c/([0-9]+)/?$ cc.php?i=$1 [L]
+
+#RULE DEFAULT IMAGE - DOMAIN/(WIDTH)/(HEIGHT) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([0-9]+)/([0-9]+)/?$ resize-class.php?w=$1&h=$2&r=$1_$2 [L]
+
+#RULE SQUARE IMAGE - DOMAIN/(WIDTH) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([0-9]+)/?$ resize-class.php?w=$1&h=$1&r=$1_$1 [L]
+
+#RULE KEYWORD IMAGE - DOMAIN/(QUERY)/(WIDTH)/(HEIGHT) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z]+)/([0-9]+)/([0-9]+)/?$ resize-class.php?w=$2&h=$3&q=$1&r=$1_$2_$3 [L]
+
+#RULE SQUARE KEYWORD IMAGE - DOMAIN/(QUERY)/(WIDTH) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z]+)/([0-9]+)/?$ resize-class.php?w=$2&h=$2&q=$1&r=$1_$2_$2 [L]
+
+#RULE COLORISED IMAGE - DOMAIN/(WIDTH)/(HEIGHT)/(C) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([0-9]+)/([0-9]+)/([0-9a-f|blur|gray|grey]+)/?$ resize-class.php?w=$1&h=$2&c=$3&r=$1_$2_$3 [L]
+
+#RULE COLORISED KEYWORD IMAGE - DOMAIN/(QUERY)/(WIDTH)/(HEIGHT)/(C) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z]+)/([0-9]+)/([0-9]+)/([0-9a-f|blur|gray|grey]+)/?$ resize-class.php?w=$2&h=$3&c=$4&q=$1&r=$1_$2_$3_$4 [L]
+
+#RULE SQUARE FILTERED KEYWORD IMAGE - DOMAIN/(QUERY)/(WIDTH)/(C) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z]+)/([0-9]+)/([0-9a-f|blur|gray|grey]+)/?$ resize-class.php?w=$2&h=$2&c=$3&q=$1&r=$1_$2_$2_$3 [L]
+
+#RULE COLORISED SQUARE IMAGE - DOMAIN/(WIDTH)/(C) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([0-9]+)/([0-9a-f|blur|gray|grey]+)/?$ resize-class.php?w=$1&h=$1&c=$2&r=$1_$1_$2 [L]
+
+#RULE MEDIUM RECTANGLE - DOMAIN/(MREC) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^mrec/?$ resize-class.php?a=mrec [L]
+
+#RULE LARGE RECTANGLE - DOMAIN/(LREC) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^lrec/?$ resize-class.php?a=lrec [L]
+
+#RULE LEADERBOARD - DOMAIN/(LB) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^lb/?$ resize-class.php?a=lb [L]
+
+#RULE LARGE LEADERBOARD - DOMAIN/(LLB) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^llb/?$ resize-class.php?a=llb [L]
+
+#RULE BANNER - DOMAIN/(B) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^b/?$ resize-class.php?a=b [L]
+
+#RULE HALF BANNER - DOMAIN/(HB) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^hb/?$ resize-class.php?a=hb [L]
+
+#RULE VERTICAL BANNER - DOMAIN/(VB) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^vb/?$ resize-class.php?a=vb [L]
+
+#RULE BUTTON - DOMAIN/(BTN) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^btn/?$ resize-class.php?a=btn [L]
+
+#RULE WIDE SKYSCRAPER - DOMAIN/(WSKY) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^wsky/?$ resize-class.php?a=wsky [L]
+
+#RULE SKYSCRAPER - DOMAIN/(SKY) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^sky/?$ resize-class.php?a=sky [L]
+
+#RULE LARGE SKYSCRAPER - DOMAIN/(LSKY) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^lsky/?$ resize-class.php?a=lsky [L]
+
+#RULE SQUARE - DOMAIN/(S) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^s/?$ resize-class.php?a=s [L]
+
+#RULE SMALL SQUARE - DOMAIN/(SS) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ss/?$ resize-class.php?a=ss [L]
+
+</IfModule>
+
+# ----------------------------------------------------------------------
+# Expires headers (for better cache control)
+# ----------------------------------------------------------------------
+
+# These are pretty far-future expires headers.
+# They assume you control versioning with filename-based cache busting
+# Additionally, consider that outdated proxies may miscache
+# www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
+
+# If you don't use filenames to version, lower the CSS and JS to something like
+# "access plus 1 week".
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+
+# Your document html
+  ExpiresByType text/html "access plus 0 seconds"
+
+# Media: images, video, audio
+  ExpiresByType audio/ogg "access plus 1 month"
+  ExpiresByType image/gif "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType video/mp4 "access plus 1 month"
+  ExpiresByType video/ogg "access plus 1 month"
+  ExpiresByType video/webm "access plus 1 month"
+
+# CSS and JavaScript
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+</IfModule>
