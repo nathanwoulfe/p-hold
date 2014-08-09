@@ -61,7 +61,7 @@
                     <h2><?= $photo->title->_content ?></h2>
                 </header>
                 <p>Photographer: <?= $user->username->_content ?> <?= $username ?></p>
-                <p class="more-photos"><a href="<?= $user->photosurl ?>">More photos</a> | <a href="<?= $user->profileurl->_content ?>">Profile</a></p>
+                <p class="more-photos"><a href="<?= $user->photosurl->_content ?>">More photos</a> | <a href="<?= $user->profileurl->_content ?>">Profile</a></p>
             </div>
         </section>
         <article id="main">
