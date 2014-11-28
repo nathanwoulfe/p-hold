@@ -55,6 +55,11 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([0-9]+)/([0-9a-f|blur|gray|grey]+)/?$ resize-class.php?w=$1&h=$1&c=$2&r=$1_$1_$2 [L]
 
+#RULE IMAGE BY USER AT SIZE - DOMAIN/u/(USER)/(WIDTH)/(HEIGHT) 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^u/(.+?)/([0-9]+)/([0-9]+)/?$ resize-class.php?w=$2&h=$3$u=1&r=$1_$2_$3 [L]
+
 #RULE MEDIUM RECTANGLE - DOMAIN/(MREC) 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

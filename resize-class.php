@@ -47,6 +47,8 @@
             $w = $d[w];
             $h = $d[h];
             $c = $d[c];
+            $u = $d[u];
+
             /* the referring url */
             $r = $d[r];
 
@@ -117,6 +119,25 @@
     
             } 
     
+            else if (!empty($u)) {
+                $peopleUrl = 'https://api.flickr.com/services/rest/?method=flickr.people.findByUsername&api_key='.$api_key.'&username='.urlencode($u).'&format=json&nojsoncallback=1';
+                $response = json_decode(file_get_contents($peopleUrl), true);
+                $user = $response['user']['id'];
+                
+                $photosUrl =  'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key='.$api_key.'&user_id='.urlencode($user).'&format=json&nojsoncallback=1';
+                $response = json_decode(file_get_contents($photosUrl), true);
+
+                $i = rand(1,100);
+                $photo = $response['photos']['photo'][$i];
+
+                $image_url = 'http://farm'.$photo['farm'].'.staticflickr.com/'.$photo['server'].'/'.$photo['id'].'_'.$photo['secret'].'_b.jpg';
+
+                if (!empty($image_url)) {
+                    $i = new resize($image_url, $r);
+                    $i -> resizeImage($w, $h);
+                    $i -> sendImage($c, 'p-hold.com/c/'.$photo['id']);
+                }
+            }
     
             else {  
     
