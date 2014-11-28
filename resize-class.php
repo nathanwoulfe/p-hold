@@ -132,6 +132,10 @@
 
                 $image_url = 'http://farm'.$photo['farm'].'.staticflickr.com/'.$photo['server'].'/'.$photo['id'].'_'.$photo['secret'].'_b.jpg';
 
+                if (strlen($c) == 3) {
+                    $c.=$c;
+                }
+
                 if (!empty($image_url)) {
                     $i = new resize($image_url, $r);
                     $i -> resizeImage($w, $h);
