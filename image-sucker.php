@@ -5,7 +5,7 @@
 
         set_time_limit(360);
 
-        $api_key = "501e9de949f3e5b3090fab7f9a0eb48b";   
+        $api_key = "my-api-key";   
         $perPage = 50;
     
         $url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search';
