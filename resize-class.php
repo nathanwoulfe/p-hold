@@ -4,7 +4,7 @@
     error_reporting(E_ERROR | E_WARNING | E_PARSE);
     ini_set('display_errors', '1');    
     
-        $api_key = "501e9de949f3e5b3090fab7f9a0eb48b"; 
+        $api_key = "my-api-key"; 
         $url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key='.$api_key;
     
         if ($_SERVER['QUERY_STRING'] != NULL) {
